@@ -3,3 +3,8 @@
 build
 src/**/*.txt
 local.properties
+/.gradle/
+/resources/Day*
+/gradle/
+gradlew
+gradlew.bat
