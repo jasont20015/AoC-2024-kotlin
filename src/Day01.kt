@@ -12,28 +12,33 @@ fun main() {
     }
 
     fun part1(input: List<String>): Int {
-        val triple = getLists(input)
+        val lists = getLists(input)
+        val firstList = lists.first
+        val secondList = lists.second
+
         var difference = 0
-        val firstList = triple.first
-        val secondList = triple.second
+
         firstList.sort()
         secondList.sort()
+
         for(i in 0..<firstList.size){
             difference += abs(firstList[i] - secondList[i])
         }
+
         return difference
     }
 
     fun part2(input: List<String>): Int {
-        val triple = getLists(input)
+        val lists = getLists(input)
+        val firstList = lists.first
+        val secondList = lists.second
+
         var similarity = 0
-        val firstList = triple.first
-        val secondList = triple.second
         val counts = HashMap<Int, Int>()
+
         secondList.forEach {
             counts.merge(it, 1, Int::plus)
         }
-
         firstList.forEach{
             val count = counts[it]
             similarity += count?.times(it) ?: 0
