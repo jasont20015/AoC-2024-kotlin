@@ -1,37 +1,42 @@
+import kotlin.math.abs
 
 fun main() {
-    fun part1(input: List<String>): Int {
-        var diffence = 0
+    fun getLists(input: List<String>): Pair<MutableList<Int>, MutableList<Int>> {
         val firstList = mutableListOf<Int>()
         val secondList = mutableListOf<Int>()
-        for(line in input){
+        for (line in input) {
             firstList.add(line.split("   ")[0].toInt())
             secondList.add(line.split("   ")[1].toInt())
         }
+        return Pair(firstList, secondList)
+    }
+
+    fun part1(input: List<String>): Int {
+        val triple = getLists(input)
+        var difference = 0
+        val firstList = triple.first
+        val secondList = triple.second
         firstList.sort()
         secondList.sort()
-        for(i in 0..firstList.size-1){
-            if(firstList[i] >= secondList[i]){
-                diffence += firstList[i] - secondList[i]
-            }
-            else{
-                diffence += secondList[i] - firstList[i]
-            }
+        for(i in 0..<firstList.size){
+            difference += abs(firstList[i] - secondList[i])
         }
-        return diffence
+        return difference
     }
 
     fun part2(input: List<String>): Int {
+        val triple = getLists(input)
         var similarity = 0
-        val firstList = mutableListOf<Int>()
-        val secondList = mutableListOf<Int>()
-        for(line in input){
-            firstList.add(line.split("   ")[0].toInt())
-            secondList.add(line.split("   ")[1].toInt())
+        val firstList = triple.first
+        val secondList = triple.second
+        val counts = HashMap<Int, Int>()
+        secondList.forEach {
+            counts.merge(it, 1, Int::plus)
         }
+
         firstList.forEach{
-            val count = secondList.count { num -> num == it }
-            similarity += count*it
+            val count = counts[it]
+            similarity += count?.times(it) ?: 0
         }
 
         return similarity
