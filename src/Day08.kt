@@ -1,5 +1,3 @@
-typealias coordinate = Pair<Int, Int>
-
 fun main() {
     fun gcd(a: Int, b: Int): Int{
         if(b==0){
