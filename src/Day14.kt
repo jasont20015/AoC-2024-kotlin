@@ -64,7 +64,7 @@ fun main() {
         return answer
     }
 
-    fun part2(input: List<String>, testinput: Boolean = false): Long {
+    fun part2(input: List<String>, testinput: Boolean = false): Int {
         var w = 101
         var h = 103
         if(testinput){
@@ -72,8 +72,7 @@ fun main() {
             h = 7
         }
 
-        var answer = 1L
-
+        var answer = 1
         val robotList = mutableListOf<Pair<coordinate, coordinate>>()
 
         input.forEach {
@@ -84,25 +83,27 @@ fun main() {
             val velInts = velocity.split(",").map { coord -> coord.toInt() }
             robotList.add(Pair(coordinate(posInts.first(), posInts.last()), coordinate(velInts.first(), velInts.last())))
         }
+
         while(true) {
             val newList = mutableListOf<coordinate>()
             robotList.forEach { robot ->
                 val finalCoord: coordinate
-                finalCoord = moveRobot(w, h, robot.first, robot.second, answer.toInt())
+                finalCoord = moveRobot(w, h, robot.first, robot.second, answer)
                 newList.add(finalCoord)
             }
             val posMap = newList.toSet().size == robotList.size
-            if(posMap){
+
+            if(posMap) {
                 return answer
             }
-            answer += 1L
+
+            answer++
         }
     }
 
     val testInput = readInput("Day14_test")
-    println(part1(testInput, true))
     check(part1(testInput, true) == 12L)
-    // check(part2(testInput) == 1)
+    check(part2(testInput) == 1)
     
     val input = readInput("Day14")
     part1(input).println()
