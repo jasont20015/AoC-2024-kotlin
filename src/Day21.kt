@@ -38,7 +38,7 @@ fun main() {
             listOf('X', '^', 'A'),
             listOf('<', 'v', '>'),
         )
-        var stepsDir = mutableMapOf<Pair<Char, Char>, List<String>>()
+        val stepsDir = mutableMapOf<Pair<Char, Char>, List<String>>()
         for (start in "^A<v>") {
             for (end in "^A<v>") {
                 stepsDir.put(start to end, genSteps(mapDir, start, end, ""))
@@ -52,7 +52,7 @@ fun main() {
                 listOf('1', '2', '3'),
                 listOf('X', '0', 'A'),
             )
-        var stepsNum = mutableMapOf<Pair<Char, Char>, List<String>>()
+        val stepsNum = mutableMapOf<Pair<Char, Char>, List<String>>()
         for (start in "7894561230A") {
             for (end in "7894561230A") {
                 stepsNum.put(start to end, genSteps(mapNum, start, end, ""))
@@ -103,7 +103,7 @@ fun main() {
             listOf('X', '^', 'A'),
             listOf('<', 'v', '>'),
         )
-        var stepsDir = mutableMapOf<Pair<Char, Char>, List<String>>()
+        val stepsDir = mutableMapOf<Pair<Char, Char>, List<String>>()
         for (start in "^A<v>") {
             for (end in "^A<v>") {
                 stepsDir.put(start to end, genSteps(mapDir, start, end, ""))
@@ -117,7 +117,7 @@ fun main() {
                 listOf('1', '2', '3'),
                 listOf('X', '0', 'A'),
             )
-        var stepsNum = mutableMapOf<Pair<Char, Char>, List<String>>()
+        val stepsNum = mutableMapOf<Pair<Char, Char>, List<String>>()
         for (start in "7894561230A") {
             for (end in "7894561230A") {
                 stepsNum.put(start to end, genSteps(mapNum, start, end, ""))
